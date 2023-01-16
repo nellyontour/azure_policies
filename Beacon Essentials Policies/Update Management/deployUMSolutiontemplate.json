@@ -1,0 +1,135 @@
+{
+"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+ "contentVersion": "1.0.0.0",
+ "parameters": {
+ 	"workspaceName": {
+ 		"type": "string",
+ 		"metadata": {
+ 			"description": "Workspace name"
+ 		}
+ 	},
+ 	"pricingTier": {
+ 		"type": "string",
+ 		"allowedValues": [
+ 			"pergb2018"
+ 		],
+ 		"defaultValue": "pergb2018",
+ 		"metadata": {
+ 			"description": "Pricing tier: perGB2018."
+ 		}
+ 	},
+ 	"dataRetention": {
+ 		"type": "int",
+ 		"defaultValue": 30,
+ 		"minValue": 7,
+ 		"maxValue": 730,
+ 		"metadata": {
+ 			"description": "Number of days of retention"
+ 		}
+ 	},
+ 	"immediatePurgeDataOn30Days": {
+ 		"type": "bool",
+ 		"defaultValue": "[bool('false')]",
+ 		"metadata": {
+ 			"description": "If set to true when changing retention to 30 days, older data will be immediately deleted. Use this with extreme caution. This only applies when retention is being set to 30 days."
+ 		}
+ 	},
+ 	"location": {
+ 		"type": "string",
+ 		"allowedValues": [
+ 			"australiasoutheast"
+ 		],
+ 		"metadata": {
+ 			"description": "Specifies the location in which to create the workspace."
+ 		}
+ 	},
+    "automationAccountName": {
+        "type": "string",
+        "metadata": {
+            "description": "Automation account name"
+        }
+    },
+ 	"automationAccountLocation": {
+ 	    "type": "string",
+        "allowedValues": [
+ 			"australiasoutheast"
+        ],
+ 		"metadata": {
+ 		    "description": "Specify the location in which to create the Automation account."
+ 		}
+ 	}
+},
+"variables": {
+    "Updates": {
+        "name": "[concat('Updates', '(', parameters('workspaceName'), ')')]",
+        "galleryName": "Updates"
+    }
+},
+"resources": [
+    {
+    "type": "Microsoft.OperationalInsights/workspaces",
+        "name": "[parameters('workspaceName')]",
+        "apiVersion": "2017-03-15-preview",
+        "location": "[parameters('location')]",
+        "properties": {
+            "sku": { 
+                "name": "CapacityReservation",
+                "capacityReservationLevel": 100
+            },
+            "retentionInDays": "[parameters('dataRetention')]",
+            "features": {
+                "searchVersion": 1,
+                "legacy": 0,
+                "enableLogAccessUsingOnlyResourcePermissions": true
+            }
+        },
+        "resources": [
+            {
+                "apiVersion": "2015-11-01-preview",
+                "location": "[resourceGroup().location]",
+                "name": "[variables('Updates').name]",
+                "type": "Microsoft.OperationsManagement/solutions",
+                "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationsManagement/solutions/', variables('Updates').name)]",
+                "dependsOn": [
+                    "[concat('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]"
+                ],
+                "properties": {
+                    "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]"
+                },
+                "plan": {
+                    "name": "[variables('Updates').name]",
+                    "publisher": "Microsoft",
+                    "promotionCode": "",
+                    "product": "[concat('OMSGallery/', variables('Updates').galleryName)]"
+                }
+            }
+        ]
+    },
+    {
+        "type": "Microsoft.Automation/automationAccounts",
+        "apiVersion": "2015-01-01-preview",
+        "name": "[parameters('automationAccountName')]",
+        "location": "[parameters('automationAccountLocation')]",
+        "dependsOn": [],
+        "tags": {},
+        "properties": {
+            "sku": {
+                "name": "Basic"
+            }
+        }
+ 	},
+    {
+        "apiVersion": "2015-11-01-preview",
+        "type": "Microsoft.OperationalInsights/workspaces/linkedServices",
+        "name": "[concat(parameters('workspaceName'), '/' , 'Automation')]",
+        "location": "[resourceGroup().location]",
+        "dependsOn": [
+            "[concat('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]",
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]"
+        ],
+        "properties": {
+            "resourceId": "[resourceId('Microsoft.Automation/automationAccounts/', parameters('automationAccountName'))]"
+        }
+    }
+  ]
+}

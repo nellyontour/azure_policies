@@ -1,0 +1,33 @@
+{
+  "mode": "All",
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.Network/virtualNetworks/subnets"
+        },
+        {
+          "field": "name",
+          "notEquals": "GatewaySubnet"
+        },
+        {
+          "field": "name",
+          "notEquals": "AzureFirewallSubnet"
+        },
+        {
+          "field": "name",
+          "notEquals": "AzureBastionSubnet"
+        },
+        {
+          "field": "Microsoft.Network/virtualNetworks/subnets/serviceEndpoints[*].service",
+          "notEquals": "Microsoft.Sql"
+        }
+      ]
+    },
+    "then": {
+      "effect": "audit"
+    }
+  },
+  "parameters": {}
+}

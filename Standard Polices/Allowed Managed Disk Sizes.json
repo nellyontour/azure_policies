@@ -1,0 +1,21 @@
+{
+    "mode": "All",
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Compute/disks"
+          },
+          {
+            "field": "Microsoft.Compute/disks/diskSizeGB",
+            "greater": 512
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    },
+    "parameters": {}
+  }

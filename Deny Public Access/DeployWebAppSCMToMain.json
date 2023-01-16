@@ -1,0 +1,52 @@
+{
+  "mode": "All",
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.Web/sites"
+        },
+        {
+          "field": "kind",
+          "like": "*"
+        },
+        {
+        "field": "Microsoft.Web/sites/config/web.scmIpSecurityRestrictionsUseMain",
+        "equals": "False"
+        }
+      ]
+    },
+    "then": {
+      "effect": "[parameters('effect')]",
+      "type": "Microsoft.Web/sites/config",
+        "name": "web",
+      "details": {
+        "roleDefinitionIds": [
+            "/providers/microsoft.authorization/roleDefinitions/de139f84-1756-47ae-9be6-808fbbe84772"
+          ],
+          "operations": [
+            {
+              "operation": "addOrReplace",
+              "field": "Microsoft.Web/sites/config/web.scmIpSecurityRestrictionsUseMain",
+              "value": "True"
+            }
+          ]
+      }
+    }
+  },
+  "parameters": {
+    "effect": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Effect",
+        "description": "Enable or disable the execution of the policy"
+      },
+      "allowedValues": [
+        "Modify",
+        "Disabled"
+      ],
+      "defaultValue": "Modify"
+    }
+  }
+}

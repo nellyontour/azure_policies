@@ -1,0 +1,42 @@
+{
+  "mode": "All",
+  "policyRule": {
+    "if": {
+    "allOf": [
+    {
+    "field": "type",
+    "equals": "Microsoft.Web/sites"
+    },
+    {
+    "field": "kind",
+    "like": "*"
+    }
+    ]
+    },
+    "then": {
+      "effect": "[parameters('effect')]",
+      "details": {
+        "type": "Microsoft.Web/sites/config",
+        "name": "web",
+        "existenceCondition": {
+          "field": "Microsoft.Web/sites/config/web.scmIpSecurityRestrictionsUseMain",
+          "Equals": "True"
+          }
+        }
+      }
+       },
+   "parameters": {
+    "effect": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Effect",
+        "description": "Enable or disable the execution of the policy"
+      },
+      "allowedValues": [
+        "Auditifnotexists",
+        "Disabled"
+      ],
+      "defaultValue": "Auditifnotexists"
+    }
+  }
+}

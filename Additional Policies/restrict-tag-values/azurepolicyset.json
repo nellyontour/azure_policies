@@ -1,0 +1,19 @@
+[
+    {
+        "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/RestrictTagValues",
+        "parameters": {
+            "tagName" :{
+                "value" : "DataClassification"
+            },
+            "listOfAllowedValues": {
+                "value": [
+                    "Unclassified",
+                    "Confidential",
+                    "In-Confidence",
+                    "Sensitive",
+                    "Restricted"
+                ]
+            }
+        }
+    }
+]

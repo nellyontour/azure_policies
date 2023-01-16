@@ -1,0 +1,33 @@
+{
+    "mode": "Indexed",
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "equals": "Microsoft.Sql/servers"
+      },
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": {
+          "type": "Microsoft.Sql/servers/virtualNetworkRules",
+          "existenceCondition": {
+            "field": "Microsoft.Sql/servers/virtualNetworkRules/virtualNetworkSubnetId",
+            "exists": "true"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        },
+        "allowedValues": [
+          "AuditIfNotExists",
+          "Disabled"
+        ],
+        "defaultValue": "AuditIfNotExists"
+      }
+    }
+  }

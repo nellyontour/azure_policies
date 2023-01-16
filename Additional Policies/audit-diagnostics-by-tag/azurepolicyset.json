@@ -1,0 +1,13 @@
+[
+    {
+        "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/AuditDiagnosticsByTag",
+        "parameters": {
+            "tagName": {
+                "value": "ApplicationName"
+            },
+            "tagValue": {
+                "value": "Information and Analytics"
+            }
+        }
+    }
+]

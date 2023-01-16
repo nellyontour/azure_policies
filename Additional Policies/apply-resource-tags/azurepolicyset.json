@@ -1,0 +1,16 @@
+[
+    {
+        "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ApplyResourceTags",
+        "parameters": {
+            "resourceType": {
+                "value": "Microsoft.Compute/virtualMachines"
+            },
+            "tagName": {
+                "value": "AutoShutdownSchedule"
+            },
+            "tagValue": {
+                "value": "Opt-Out"
+            }
+        }
+    }
+]

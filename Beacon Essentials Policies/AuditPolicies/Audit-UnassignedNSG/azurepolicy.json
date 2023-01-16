@@ -1,0 +1,41 @@
+
+{
+  "properties": {
+    "displayName": "BEACON: Audit Unassigned Network Security Groups",
+    "mode": "Indexed",
+    "description": "This policy audits unassigned Network Security Groups",
+    "metadata": {
+        "category": "Beacon"
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Network/networkSecurityGroups"
+          },
+          {
+            "allOf": [
+              {
+                "not": {
+                  "field": "Microsoft.Network/networkSecurityGroups/subnets[*].id",
+                  "exists": true
+                }
+              },
+              {
+                "not": {
+                  "field": "Microsoft.Network/networkSecurityGroups/networkInterfaces[*].id",
+                  "exists": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "then": {
+        "effect": "audit"
+      }
+    },
+    "parameters": {}
+ }
+}

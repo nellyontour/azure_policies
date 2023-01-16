@@ -1,0 +1,15 @@
+{
+  "if": {
+    "not": {
+      "field": "location",
+      "in": [
+        "australiaeast",
+        "australiasoutheast",
+        "australiacentral"
+      ]
+    }
+  },
+  "then": {
+    "effect": "deny"
+  }
+}

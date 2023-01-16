@@ -1,0 +1,21 @@
+{
+    "mode": "Indexed",
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Network/networkInterfaces"
+          },
+          {
+            "field": "Microsoft.Network/networkInterfaces/ipconfigurations[*].privateIPAllocationMethod",
+            "notLike": "Static"
+          }
+        ]
+      },
+      "then": {
+        "effect": "audit"
+      }
+    },
+    "parameters": {}
+  }

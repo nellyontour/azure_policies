@@ -1,0 +1,29 @@
+{
+"if": {
+    "allOf": [
+      {
+        "field": "type",
+        "equals": "Microsoft.Network/networkSecurityGroups"
+      },
+      {
+        "allOf": [
+          {
+            "not": {
+              "field": "Microsoft.Network/networkSecurityGroups/subnets[*].id",
+              "exists": true
+            }
+          },
+          {
+            "not": {
+              "field": "Microsoft.Network/networkSecurityGroups/networkInterfaces[*].id",
+              "exists": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "then": {
+    "effect": "audit"
+  }
+}

@@ -1,0 +1,222 @@
+[
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.Storage/storageAccounts"
+         },
+         "namePattern": {
+            "value": "*sa"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.KeyVault/vaults"
+         },
+         "namePattern": {
+            "value": "*-kv"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.Resources/subscriptions/resourceGroups"
+         },
+         "namePattern": {
+            "value": "*-rg"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.Logic/workflows"
+         },
+         "namePattern": {
+            "value": "*-la"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.ApiManagement/service"
+         },
+         "namePattern": {
+            "value": "*-apim"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.Web/sites"
+         },
+         "namePattern": {
+            "value": "*-as"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.Web/serverfarms"
+         },
+         "namePattern": {
+            "value": "*-asp"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.DocumentDB/databaseAccounts"
+         },
+         "namePattern": {
+            "value": "*-cdb"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.EventGrid/topics"
+         },
+         "namePattern": {
+            "value": "*-egt"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.OperationalInsights/workspaces"
+         },
+         "namePattern": {
+            "value": "*-oms"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.ServiceBus/namespaces"
+         },
+         "namePattern": {
+            "value": "*-sbn"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.Sql/servers"
+         },
+         "namePattern": {
+            "value": "*-sqlsvr"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.Sql/servers/databases"
+         },
+         "namePattern": {
+            "value": "*-sqldb"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.Consumption/budgets"
+         },
+         "namePattern": {
+            "value": "*-budget"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.Network/trafficmanagerprofiles"
+         },
+         "namePattern": {
+            "value": "*-tm"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.Network/applicationGateways"
+         },
+         "namePattern": {
+            "value": "*-agw"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.Network/publicIPAddresses"
+         },
+         "namePattern": {
+            "value": "*-pip"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.Network/networkSecurityGroups"
+         },
+         "namePattern": {
+            "value": "*-nsg"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.Network/virtualNetworks"
+         },
+         "namePattern": {
+            "value": "*-vnet"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/ResourceNamingConvention",
+      "parameters": {
+         "resourceType": {
+            "value": "Microsoft.Network/routeTables"
+         },
+         "namePattern": {
+            "value": "*-rt"
+         }
+      }
+   }
+]

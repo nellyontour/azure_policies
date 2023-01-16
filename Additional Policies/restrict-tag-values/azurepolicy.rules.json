@@ -1,0 +1,9 @@
+{
+    "if": {
+        "field": "[concat('tags[', parameters('tagName'), ']')]",
+        "notIn": "[parameters('listOfAllowedValues')]"
+    },
+    "then": {
+        "effect": "deny"
+    }
+}

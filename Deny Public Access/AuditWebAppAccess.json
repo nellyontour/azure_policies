@@ -1,0 +1,58 @@
+{
+"mode": "All",
+"policyRule": {
+"if": {
+"allOf": [
+{
+"field": "type",
+"equals": "Microsoft.Web/sites"
+},
+{
+"field": "kind",
+"like": "*"
+}
+]
+},
+"then": {
+"effect": "[parameters('effect')]",
+"details": {
+"type": "Microsoft.Web/sites/config",
+"name": "web",
+"existenceCondition": {
+"count": {
+"field": "Microsoft.Web/sites/config/web.ipSecurityRestrictions[*]",
+"where": {
+"allOf": [
+{
+"field": "Microsoft.Web/sites/config/web.ipSecurityRestrictions[*].action",
+"in": [
+"Deny"
+]
+},
+{
+"field": "Microsoft.Web/sites/config/web.ipSecurityRestrictions[*].priority",
+"equals": 2147483647
+}
+]
+}
+},
+"equals": 1
+}
+}
+}
+},
+"parameters": {
+"effect": {
+"type": "String",
+"metadata": {
+"displayName": "Effect",
+"description": "Enable or disable the execution of the policy"
+},
+"allowedValues": [
+"AuditIfNotExists",
+"Disabled"
+],
+"defaultValue": "AuditIfNotExists"
+}
+}
+}

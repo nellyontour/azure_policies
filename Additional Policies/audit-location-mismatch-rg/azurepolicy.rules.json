@@ -1,0 +1,53 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "location",
+                "notIn": [
+                    "[resourcegroup().location]",
+                    "global"
+                ]
+            },
+            {
+                "field": "type",
+                "notIn": [
+                    "Microsoft.Portal/dashboards",
+                    "Microsoft.Network/networkWatchers",
+                    "Microsoft.AzureActiveDirectory/b2cDirectories"
+                ]
+            },
+            {
+                "not": {
+                    "anyOf": [
+                        {
+                            "field": "tags['LocationExempt']",
+                            "exists": "true"
+                        },
+                        {
+                            "allOf": [
+                                {
+                                    "field": "type",
+                                    "in": [
+                                        "Microsoft.OperationsManagement/solutions",
+                                        "Microsoft.operationalinsights/workspaces",
+                                        "Microsoft.RecoveryServices/vaults"
+                                    ]
+                                },
+                                {
+                                    "field": "location",
+                                    "in": [
+                                        "australiaeast",
+                                        "australiasoutheast"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "then": {
+        "effect": "audit"
+    }
+}

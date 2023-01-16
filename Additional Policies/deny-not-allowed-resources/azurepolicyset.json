@@ -1,0 +1,15 @@
+[
+    {
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+        "parameters": {
+            "listOfResourceTypesNotAllowed": {
+                "value": [
+                    "Microsoft.AzureActiveDirectory/b2cDirectories",
+                    "Microsoft.Network/dnszones",
+                    "Microsoft.Network/vpnGateways",
+                    "Microsoft.Network/bastionHosts"
+                ]
+            }
+        }
+    }
+]

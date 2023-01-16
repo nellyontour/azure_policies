@@ -1,0 +1,25 @@
+{
+    "if": {
+        
+        "value": "[resourceGroup().tags[parameters('tagName')]]",
+        "equals": "[parameters('tagValue')]"        
+    },
+    "then": {
+        "effect": "auditIfNotExists",
+        "details": {
+            "type": "Microsoft.Insights/diagnosticSettings",
+            "existenceCondition": {
+                "allOf": [
+                    {
+                        "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
+                        "equals": "true"
+                    },
+                    {
+                        "field": "Microsoft.Insights/diagnosticSettings/metrics.enabled",
+                        "equals": "true"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+  "properties": {
+    "displayName": "BEACON: Audit Storage Account HTTPS Access",
+    "mode": "Indexed",
+    "description": "This policy audits Storage Accounts For HTTPS Access Enforced",
+    "metadata": {
+        "category": "Beacon"
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Storage/storageAccounts"
+          },
+          {
+            "field": "Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly",
+            "equals": "false"
+          }
+        ]
+      },
+      "then": {
+        "effect": "audit"
+      }
+    },
+    "parameters": {}
+  }
+}

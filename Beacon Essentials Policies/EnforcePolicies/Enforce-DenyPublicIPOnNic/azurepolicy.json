@@ -1,0 +1,30 @@
+{
+"properties": {
+    "displayName": "Beacon: Deny Network interfaces with public IPs",
+    "mode": "Indexed",
+    "description": "This policy denies the network interfaces which are configured with any public IP. This should be reviewed by the network security team.",
+    "metadata": {
+      "category": "Beacon"
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Network/networkInterfaces"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Network/networkInterfaces/ipconfigurations[*].publicIpAddress.id",
+              "notLike": "*"
+            }
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+  },
+  "parameters": {}
+  }
+}

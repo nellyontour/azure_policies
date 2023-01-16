@@ -1,0 +1,90 @@
+[
+   {
+      "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/49c88fc8-6fd1-46fd-a676-f12d1d3a4c71",
+      "parameters": {
+         "tagName": {
+            "value": "Environment"
+         },
+         "tagValue": {
+            "value": "NotSet"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/49c88fc8-6fd1-46fd-a676-f12d1d3a4c71",
+      "parameters": {
+         "tagName": {
+            "value": "CostCentre"
+         },
+         "tagValue": {
+            "value": "NotSet"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/49c88fc8-6fd1-46fd-a676-f12d1d3a4c71",
+      "parameters": {
+         "tagName": {
+            "value": "DataClassification"
+         },
+         "tagValue": {
+            "value": "Unclassified"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/49c88fc8-6fd1-46fd-a676-f12d1d3a4c71",
+      "parameters": {
+         "tagName": {
+            "value": "BusinessOwner"
+         },
+         "tagValue": {
+            "value": "NotSet"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/49c88fc8-6fd1-46fd-a676-f12d1d3a4c71",
+      "parameters": {
+         "tagName": {
+            "value": "SupportContact"
+         },
+         "tagValue": {
+            "value": "NotSet"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/49c88fc8-6fd1-46fd-a676-f12d1d3a4c71",
+      "parameters": {
+         "tagName": {
+            "value": "ApplicationName"
+         },
+         "tagValue": {
+            "value": "NotSet"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/49c88fc8-6fd1-46fd-a676-f12d1d3a4c71",
+      "parameters": {
+         "tagName": {
+            "value": "ReleaseNumber"
+         },
+         "tagValue": {
+            "value": "NotSet"
+         }
+      }
+   },
+   {
+      "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/49c88fc8-6fd1-46fd-a676-f12d1d3a4c71",
+      "parameters": {
+         "tagName": {
+            "value": "TemplateVersion"
+         },
+         "tagValue": {
+            "value": "NotSet"
+         }
+      }
+   }
+]

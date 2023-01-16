@@ -1,0 +1,17 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "type",
+                "equals": "[parameters('resourceType')]"
+            },
+            {
+                "field": "name",
+                "notLike": "[parameters('namePattern')]"
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+    }
+}

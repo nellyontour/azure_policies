@@ -1,0 +1,9 @@
+{
+    "subshortname": {
+        "type": "String",
+        "metadata": {
+            "displayName": "Subscription short name",
+            "description": "Short name of the subscription with no spaces. ie. shared01"
+        }
+    }
+}

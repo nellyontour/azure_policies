@@ -1,0 +1,28 @@
+{
+  "properties": {
+    "displayName": "BEACON: Audit Resource Groups For Missing Owner Tag",
+    "mode": "Indexed",
+    "description": "This policy audits Resource Groups For Missing owner Tag",
+    "metadata": {
+        "category": "Beacon"
+    },
+      "policyRule": {
+        "if": {
+          "allOf": [
+            {
+              "field": "type",
+              "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+            },
+            {
+              "field": "tags.Owner",
+              "exists": false
+            }
+          ]
+        },
+        "then": {
+          "effect": "audit"
+        }
+      },
+      "parameters": {}
+    }
+  }

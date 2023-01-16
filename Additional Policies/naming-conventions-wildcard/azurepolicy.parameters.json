@@ -1,0 +1,14 @@
+{
+    "resourceType": {
+        "type": "String",
+        "metadata": {
+            "description": "Resource type to apply standard to. ie. Microsoft.Storage/storageAccounts"
+        }
+    },
+    "namePattern": {
+        "type": "String",
+        "metadata": {
+            "description": "Pattern to use for names. Use wildcard for like matching (*)."
+        }
+    }
+}

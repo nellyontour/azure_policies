@@ -1,0 +1,10 @@
+[
+    {
+       "policyDefinitionId": "/providers/Microsoft.Management/managementgroups/eqc-nz/providers/Microsoft.Authorization/policyDefinitions/EnforceRgWildcard",
+       "parameters": {          
+          "subshortname": {
+             "value": "[parameters('SubscriptionShortName')]"
+          }
+       }
+    }
+]
