@@ -1,0 +1,21 @@
+{
+  "mode": "All",
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+        },
+        {
+          "field": "tags.Application",
+          "exists": false
+        }
+      ]
+    },
+    "then": {
+      "effect": "audit"
+    }
+  },
+  "parameters": {}
+}
