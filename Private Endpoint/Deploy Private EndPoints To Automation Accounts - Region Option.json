@@ -3,30 +3,27 @@
   "policyRule": {
     "if": {
       "allOf": [
-        {
-          "field": "type",
-          "equals": "Microsoft.Storage/storageAccounts"
-        },
-        {
-          "count": {
-            "field": "Microsoft.Storage/storageAccounts/privateEndpointConnections[*]",
-            "where": {
-              "field": "Microsoft.Storage/storageAccounts/privateEndpointConnections[*].id",
-              "exists": "false"
-            }
-          },
-          "equals": 0
-        }
-      ]
+    {
+      "field": "type",
+      "equals": "Microsoft.Automation/automationAccounts"
+    },
+    {
+      "field": "location",
+      "in": "[parameters('accountlocation')]"
+    }
+  ]
     },
     "then": {
       "effect": "[parameters('effect')]",
       "details": {
-        "type": "Microsoft.Storage/storageAccounts/privateEndpointConnections",
+        "type": "Microsoft.Automation/automationAccounts/privateEndpointConnections",
+        "existenceCondition": {
+          "field": "Microsoft.Automation/automationAccounts/privateEndpointConnections/privateLinkServiceConnectionState.status",
+          "equals": "Approved"
+        },
         "roleDefinitionIds": [
           "/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7",
-          "/providers/Microsoft.Authorization/roleDefinitions/6d8ee4ec-f05a-4a1d-8b00-a9b17e38b437",
-          "/providers/Microsoft.Authorization/roleDefinitions/17d1049b-9a84-46fb-8f53-869881c3d3ab"
+          "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
         ],
         "deployment": {
           "properties": {
@@ -73,17 +70,14 @@
                       "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
                       "contentVersion": "1.0.0.0",
                       "parameters": {
-                        "name": {
-                          "type": "String"
-                        },
                         "serviceId": {
-                          "type": "String"
+                          "type": "string"
                         },
                         "privateEndpointSubnetId": {
-                          "type": "String"
+                          "type": "string"
                         },
-                        "subnetlocation": {
-                          "type": "String"
+                        "subnetLocation": {
+                          "type": "string"
                         }
                       },
                       "variables": {
@@ -91,47 +85,65 @@
                       },
                       "resources": [
                         {
+                          "name": "[concat(variables('privateEndpointName'),'Webhook')]",
                           "type": "Microsoft.Network/privateEndpoints",
                           "apiVersion": "2020-07-01",
-                          "name": "[variables('privateEndpointName')]",
-                          "location": "[parameters('subnetlocation')]",
+                          "location": "[parameters('subnetLocation')]",
+                          "tags": {},
                           "properties": {
-                            "privateLinkServiceConnections": [
-                              {
-                                "name": "[parameters('name')]",
-                                "properties": {
-                                  "privateLinkServiceId": "[parameters('serviceId')]",
-                                  "groupIds": [
-                                    "sqlServer"
-                                  ],
-                                  "privateLinkServiceConnectionState": {
-                                    "status": "Approved",
-                                    "description": "Auto-approved",
-                                    "actionsRequired": "None"
-                                  }
-                                }
-                              }
-                            ],
-                            "manualPrivateLinkServiceConnections": [],
                             "subnet": {
                               "id": "[parameters('privateEndpointSubnetId')]"
                             },
-                            "customDnsConfigs": []
+                            "privateLinkServiceConnections": [
+                              {
+                                "name": "[concat(variables('privateEndpointName'),'Webhook')]",
+                                "properties": {
+                                  "privateLinkServiceId": "[parameters('serviceId')]",
+                                  "groupIds": [
+                                    "Webhook"
+                                  ],
+                                  "requestMessage": "autoapprove"
+                                }
+                              }
+                            ],
+                            "manualPrivateLinkServiceConnections": []
+                          }
+                        },
+                        {
+                          "name": "[concat(variables('privateEndpointName'),'DSCAndHybridWorker')]",
+                          "type": "Microsoft.Network/privateEndpoints",
+                          "apiVersion": "2020-07-01",
+                          "location": "[parameters('subnetLocation')]",
+                          "tags": {},
+                          "properties": {
+                            "subnet": {
+                              "id": "[parameters('privateEndpointSubnetId')]"
+                            },
+                            "privateLinkServiceConnections": [
+                              {
+                                "name": "[concat(variables('privateEndpointName'),'DSCAndHybridWorker')]",
+                                "properties": {
+                                  "privateLinkServiceId": "[parameters('serviceId')]",
+                                  "groupIds": [
+                                    "DSCAndHybridWorker"
+                                  ],
+                                  "requestMessage": "autoapprove"
+                                }
+                              }
+                            ],
+                            "manualPrivateLinkServiceConnections": []
                           }
                         }
                       ]
                     },
                     "parameters": {
-                      "name": {
-                        "value": "[parameters('name')]"
+                      "serviceId": {
+                        "value": "[parameters('serviceId')]"
                       },
                       "privateEndpointSubnetId": {
                         "value": "[parameters('privateEndpointSubnetId')]"
                       },
-                      "serviceId": {
-                        "value": "[parameters('serviceId')]"
-                      },
-                      "subnetlocation": {
+                      "subnetLocation": {
                         "value": "[reference(first(take(split(parameters('privateEndpointSubnetId'),'/subnets'),1)),'2020-07-01','Full').location]"
                       }
                     }
@@ -148,10 +160,24 @@
     "privateEndpointSubnetId": {
       "type": "String",
       "metadata": {
-        "displayName": "Subnet to use for Private Endpoints",
-        "description": "The name of the subnet within the virtual network that you would like to use for your Private Endpoint Connection deployment",
+        "displayName": "Private endpoint subnet id",
+        "description": "A subnet with private endpoint network policies disabled",
         "strongType": "Microsoft.Network/virtualNetworks/subnets"
       }
+    },
+    "accountlocation":{
+      "type": "array",
+      "Metadata":{
+        "strongtype": "location",
+        "displayName": "Location"
+      },
+      "allowedValues": [
+        "Australia East",
+        "Australia Southeast",
+        "UK South",
+        "UK West"
+      ],
+      "defaultValue": ["Australia East"]
     },
     "effect": {
       "type": "String",

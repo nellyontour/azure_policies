@@ -1,45 +1,56 @@
-
 #Create Private Endpoint Definitions
-New-AzPolicyDefinition -Name 'Deploy Private Endpoint to Azure blob storage' -DisplayName 'Deploy Private Endpoint to Azure blob storage' -Policy 'Deploy Private Endpoint to Azure blob storage - Region Option.json'
-New-AzPolicyDefinition -Name 'Deploy Private Endpoint to Azure file storage' -DisplayName 'Deploy Private Endpoint to Azure file storage' ' -Policy 'Deploy Private Endpoint to Azure file storage - Region Option.json'
-New-AzPolicyDefinition -Name 'Deploy Private Endpoint to Azure Key Vaults' -DisplayName 'Deploy Private Endpoint to Azure Key Vaults' -Policy 'Deploy Private Endpoint to Azure Key Vaults - Region Option.json'
-New-AzPolicyDefinition -Name 'Deploy Private EndPoints To SQL Servers' -DisplayName 'Deploy Private EndPoints To SQL Servers' -Policy 'Deploy Private EndPoints To SQL Servers - Region option.json'
+New-AzPolicyDefinition -Name 'Deploy Private Endpoint to Azure blob storage - Region Option' -DisplayName 'Deploy Private Endpoint to Azure blob storage - Region Option' -Policy 'Deploy Private Endpoint to Azure blob storage - Region Option.json'
+New-AzPolicyDefinition -Name 'Deploy Private Endpoint to Azure Key Vaults - Region Option' -DisplayName 'Deploy Private Endpoint to Azure Key Vaults - Region Option' -Policy 'Deploy Private Endpoint to Azure Key Vaults - Region Option.json'
+New-AzPolicyDefinition -Name 'Deploy Private EndPoints To SQL Servers - Region Option' -DisplayName 'Deploy Private EndPoints To SQL Servers - Region Option' -Policy 'Deploy Private EndPoints To SQL Servers - Region option.json'
+New-AzPolicyDefinition -Name 'Deploy Private EndPoints To Automation Accounts - Region Option' -DisplayName 'Deploy Private EndPoints To Automation Accounts - Region Option' -Policy 'Deploy Private EndPoints To Automation Accounts - Region Option.json'
+New-AzPolicyDefinition -Name 'Deploy Private EndPoints To ServiceBus Namespace - Region Option' -DisplayName 'Deploy Private EndPoints To ServiceBus Namespace - Region Option' -Policy 'Deploy Private EndPoints To ServiceBus Namespace - Region Option.json'
 
 #Create Private DNS Definitions
-New-AzPolicyDefinition -Name 'Deploy Azure Automation DSCAndHybridWorker to use private DNS zones' -DisplayName 'Deploy Azure Automation DSCAndHybridWorker to use private DNS zones' -Policy 'Configure Azure Automation DSCAndHybridWorker to use private DNS zones.json'
-New-AzPolicyDefinition -Name 'Deploy Azure SQL Server to use private DNS zones' -DisplayName 'Deploy Azure SQL Server to use private DNS zones' -Policy 'Configure Azure SQL Server to use private DNS zones.json'
-New-AzPolicyDefinition -Name 'Deploy blob storage to use private DNS zones' -DisplayName 'Deployblob storage to use private DNS zones' -Policy 'Configure blob storage to use private DNS zones.json'
-New-AzPolicyDefinition -Name 'Deploy file storage to use private DNS zones' -DisplayName 'Deploy file storage to use private DNS zones' -Policy 'Configure file storage to use private DNS zones.json'
-New-AzPolicyDefinition -Name 'Deploy Key Vaults  to use private DNS zones' -DisplayName 'Deploy Key Vaults  to use private DNS zones' -Policy 'Configure Key Vaults  to use private DNS zones.json'
-New-AzPolicyDefinition -Name 'Deploy Service Bus namespaces to use private DNS zones' -DisplayName 'Deploy Service Bus namespaces to use private DNS zones' -Policy 'Configure Service Bus namespaces to use private DNS zones.json'
+New-AzPolicyDefinition -Name 'Deploy Azure Automation DSCAndHybridWorker to use private DNS zones' -DisplayName 'Deploy Azure Automation DSCAndHybridWorker to use private DNS zones' -Policy 'Deploy Azure Automation DSCAndHybridWorker to use private DNS zones.json'
+New-AzPolicyDefinition -Name 'Deploy Azure SQL Server to use private DNS zones' -DisplayName 'Deploy Azure SQL Server to use private DNS zones' -Policy 'Deploy Azure SQL Server to use private DNS zones.json'
+New-AzPolicyDefinition -Name 'Deploy blob storage to use private DNS zones' -DisplayName 'Deploy blob storage to use private DNS zones' -Policy 'Deploy blob storage to use private DNS zones.json'
+New-AzPolicyDefinition -Name 'Deploy file storage to use private DNS zones' -DisplayName 'Deploy file storage to use private DNS zones' -Policy 'Deploy file storage to use private DNS zones.json'
+New-AzPolicyDefinition -Name 'Deploy table storage to use private DNS zones' -DisplayName 'Deploy table storage to use private DNS zones' -Policy 'Deploy table storage to use private DNS zones.json'
+New-AzPolicyDefinition -Name 'Deploy queue storage to use private DNS zones' -DisplayName 'Deploy queue storage to use private DNS zones' -Policy 'Deploy queue storage to use private DNS zones.json'
+New-AzPolicyDefinition -Name 'Deploy Key Vaults to use private DNS zones' -DisplayName 'Deploy Key Vaults to use private DNS zones' -Policy 'Deploy Key Vaults to use private DNS zones.json'
+New-AzPolicyDefinition -Name 'Deploy Service Bus namespaces to use private DNS zones' -DisplayName 'Deploy Service Bus namespaces to use private DNS zones' -Policy 'Deploy Service Bus namespaces to use private DNS zones.json'
 
-#Deny Public Access Audit Policies
-New-AzPolicyDefinition -Name 'Audit PublicAccessonSQLServer' -DisplayName 'Audit Public Accesson SQL Server' -Policy 'AuditPublicAccessonSQLServer.json'
-New-AzPolicyDefinition -Name 'Audit WebApp Access' -DisplayName 'Audit WebApp Access' -Policy 'AuditWebAppAccess.json'
-New-AzPolicyDefinition -Name 'Audit WebApp SCMAccess To Use Main' -DisplayName 'Audit WebApp SCMAccess To Use Main' -Policy 'AuditWebAppSCMAccessToUseMain.json'
-
-#Deny Public Access Deployment Policies
+#Deny & Audit Public Access Policies
+New-AzPolicyDefinition -Name 'Audit Public Access on SQL Server' -DisplayName 'Audit Public Access on SQL Server' -Policy 'Audit Public Access on SQL Server.json'
+New-AzPolicyDefinition -Name 'Audit Public Access on WebApp' -DisplayName 'Audit Public access on WebApp' -Policy 'Audit Public access on WebApp.json'
+New-AzPolicyDefinition -Name 'Audit WebApp SCM Access To Use Main' -DisplayName 'Audit WebApp SCM Access To Use Main' -Policy 'Audit WebApp SCM Access To Use Main.json'
 New-AzPolicyDefinition -Name 'Deploy Firewall To Storage Accounts' -DisplayName 'Deploy Firewall To Storage Accounts' -Policy 'Deploy Firewall To Storage Accounts.json'
-New-AzPolicyDefinition -Name 'DeployWebAppSCMToMain' -DisplayName 'DeployWebAppSCMToMain' -Policy 'DeployWebAppSCMToMain.json'
-New-AzPolicyDefinition -Name 'DenyPublicAccessOnSQL' -DisplayName 'DenyPublicAccessOnSQL' -Policy 'DenyPublicAccessOnSQL.json'
+New-AzPolicyDefinition -Name 'Deploy WebApp SCM To Main' -DisplayName 'Deploy WebApp SCM To Main' -Policy 'Deploy WebApp SCM To Main.json'
+New-AzPolicyDefinition -Name 'Deny Public Access On SQL' -DisplayName 'Deny Public Access On SQL' -Policy 'Deny Public Access On SQL.json'
 New-AzPolicyDefinition -Name 'Deploy Firewall To Key Vault' -DisplayName 'Deploy Firewall To Key Vault' -Policy 'Deploy Firewall To Key Vault.json'
 
 #Deploy NSG Log Policy
-New-AzPolicyDefinition -Name 'Deploy NSG Flow Log Settings' -DisplayName 'Deploy NSG Flow Log Settings' -Policy 'Apply NSG Flow Log Settings.json'
+New-AzPolicyDefinition -Name 'Deploy NSG Flow Log Settings' -DisplayName 'Deploy NSG Flow Log Settings' -Policy 'Deploy NSG Flow Log Settings.json'
 
 #Deploy Tag Policies
 New-AzPolicyDefinition -Name 'Audit Resource Groups For Application Tag' -DisplayName 'Audit Resource Groups For Application Tag' -Policy 'Audit Resource Groups For Application Tag.json'
 New-AzPolicyDefinition -Name 'Audit Resource Groups For Owner Tag' -DisplayName 'Audit Resource Groups For Owner Tag' -Policy 'Audit Resource Groups For Owner Tag.json'
-New-AzPolicyDefinition -Name 'Deploy Inherit Application tag from the resource group' -DisplayName 'Deploy Inherit Application tag from the resource group' -Policy 'Modify Inherit Application tag from the resource group.json'
-New-AzPolicyDefinition -Name 'Deploy Inherit Owner tag from the resource group' -DisplayName 'Deploy Inherit Owner tag from the resource group' -Policy 'Modify Inherit Owner tag from the resource group.json'
-New-AzPolicyDefinition -Name 'Deploy Inherit Environment tag from the subscription' -DisplayName 'Deploy Inherit Environment tag from the subscription' -Policy 'Modify Inherit Environment tag from the subscription.json'
+New-AzPolicyDefinition -Name 'Deploy Inherit Application tag from the resource group' -DisplayName 'Deploy Inherit Application tag from the resource group' -Policy 'Deploy Inherit Application tag from the resource group.json'
+New-AzPolicyDefinition -Name 'Deploy Inherit Owner tag from the resource group' -DisplayName 'Deploy Inherit Owner tag from the resource group' -Policy 'Deploy Inherit Owner tag from the resource group.json'
+New-AzPolicyDefinition -Name 'Deploy Inherit Environment tag from the subscription' -DisplayName 'Deploy Inherit Environment tag from the subscription' -Policy 'Deploy Inherit Environment tag from the subscription.json'
+New-AzPolicyDefinition -Name 'Deny Snapshots without expiry Tag' -DisplayName 'Deny Snapshots without expiry Tag' -Policy 'Deny Snapshots without expiry Tag.json'
 
 #Deploy Standard Policies
 New-AzPolicyDefinition -Name 'Deny Network interfaces with public IPs' -DisplayName 'Deny Network interfaces with public IPs' -Policy 'Deny Network interfaces with public IPs.json'
-New-AzPolicyDefinition -Name 'Deny Allowed Managed Disk Sizes' -DisplayName 'Deny Allowed Managed Disk Sizes' -Policy 'Allowed Managed Disk Sizes.json'
+New-AzPolicyDefinition -Name 'Deny Large Managed Disk Sizes' -DisplayName 'Deny Large Managed Disk Sizes' -Policy 'Deny Large Managed Disk Sizes.json'
+New-AzPolicyDefinition -Name 'Deny unauthorised VM SKUs' -DisplayName 'Deny unauthorised VM SKUs' -Policy 'Deny unauthorised VM SKUs.json'
 New-AzPolicyDefinition -Name 'Audit Azure Backup should be enabled for Virtual Machines' -DisplayName 'Audit Azure Backup should be enabled for Virtual Machines' -Policy 'Audit Azure Backup should be enabled for Virtual Machines.json'
 New-AzPolicyDefinition -Name 'Deny Disallowed locations' -DisplayName 'Deny Disallowed locations' -Policy 'Deny Disallowed locations.json'
+New-AzPolicyDefinition -Name 'Deny Resource Group disallowed locations' -DisplayName 'Deny Resource group disallowed locations' -Policy 'Deny Resource group disallowed locations.json'
 New-AzPolicyDefinition -Name 'Deny Network interfaces with public IPs' -DisplayName 'Deny Network interfaces with public IPs' -Policy 'Deny Network interfaces with public IPs.json'
+New-AzPolicyDefinition -Name 'Deploy NoDelete Lock On Resource Groups' -DisplayName 'Deploy NoDelete Lock On Resource Groups' -Policy 'Deploy NoDelete Lock On Resource Groups.json'
+New-AzPolicyDefinition -Name 'Audit Virtual Machines Not Using Hybrid Use Benefit' -DisplayName 'Audit Virtual Machines Not Using Hybrid Use Benefit' -Policy 'Audit Virtual Machines Not Using Hybrid Use Benefit.json'
+New-AzPolicyDefinition -Name 'Audit Network interfaces with Dynamic IPs' -DisplayName 'Audit Network interfaces with Dynamic IPs' -Policy 'Audit Network interfaces with Dynamic IPs.json'
+New-AzPolicyDefinition -Name 'Deploy SQL DB transparent data encryption' -DisplayName 'Deploy SQL DB transparent data encryption' -Policy 'Deploy SQL DB transparent data encryption.json'
+New-AzPolicyDefinition -Name 'Deploy Threat Detection on SQL servers' -DisplayName 'Deploy Threat Detection on SQL servers' -Policy 'Deploy Threat Detection on SQL serverss.json'
+
+
+
 
 https://learn.microsoft.com/en-us/azure/governance/policy/how-to/programmatically-create
 

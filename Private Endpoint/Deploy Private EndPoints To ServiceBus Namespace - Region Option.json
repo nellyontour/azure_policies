@@ -8,6 +8,10 @@
           "equals": "Microsoft.ServiceBus/namespaces"
         },
         {
+          "field": "location",
+          "in": "[parameters('buslocation')]"
+        },   
+        {
           "count": {
             "field": "Microsoft.ServiceBus/namespaces/privateEndpointConnections[*]",
             "where": {
@@ -150,6 +154,20 @@
         "description": "The name of the subnet within the virtual network that you would like to use for your Private Endpoint Connection deployment",
         "strongType": "Microsoft.Network/virtualNetworks/subnets"
       }
+    },
+    "buslocation":{
+      "type": "array",
+      "Metadata":{
+        "strongtype": "location",
+        "displayName": "Location"
+      },
+      "allowedValues": [
+        "Australia East",
+        "Australia Southeast",
+        "UK South",
+        "UK West"
+      ],
+      "defaultValue": ["Australia East"]
     },
     "effect": {
       "type": "String",
