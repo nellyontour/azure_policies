@@ -1,0 +1,34 @@
+{
+  "mode": "Indexed",
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.Storage/storageAccounts/blobServices"
+        },
+        {
+          "field": "Microsoft.Storage/storageAccounts/blobServices/deleteRetentionPolicy.enabled",
+          "equals": "false"
+        }
+      ]
+    },
+    "then": {
+        "effect": "[parameters('effect')]"
+      }
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        },
+        "allowedValues": [
+          "Audit",
+          "Disabled"
+        ],
+        "defaultValue": "Audit"
+      }
+    }
+  }
