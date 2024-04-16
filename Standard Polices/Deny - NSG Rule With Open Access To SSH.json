@@ -1,6 +1,6 @@
 {
-    "displayName": "Deny NSG rule changes that allow SSH & RDP inbound traffic from Any",
-    "description": "Denies the creation of network security group rules that allow SSH & RDP inbound traffic from Any",
+    "displayName": "Deny NSG rule changes that allow SSH inbound traffic from Any",
+    "description": "Denies the creation of network security group rules that allow SSH inbound traffic from Any",
     "mode": "All",
     "policyRule": {
     "if": {
@@ -20,33 +20,20 @@
             "equals": "Inbound"
             },
             {
-            "anyOf": [
-            {
-            "field": "Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRange",
-            "equals": "22"
-            },
-            {
-            "not": {
-            "field": "Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRanges[*]",
-            "notEquals": "22"
-            }
-            }
-            ]
-            },
-            {
                 "anyOf": [
                 {
                 "field": "Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRange",
-                "equals": "3389"
+                "equals": "22"
                 },
                 {
                 "not": {
                 "field": "Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRanges[*]",
-                "notEquals": "3389"
+                "notEquals": "22"
                 }
                 }
                 ]
-                },
+            },
+
             {
             "anyOf": [
             {
@@ -75,4 +62,4 @@
         "effect": "deny"
         }
         }
-    }
+}
