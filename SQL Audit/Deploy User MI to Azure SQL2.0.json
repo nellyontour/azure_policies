@@ -1,0 +1,101 @@
+{
+    "mode": "Indexed",
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Sql/servers"
+          },
+          {
+            "field": "location",
+            "in": "[parameters('sqllocation')]"
+          },
+          {
+            "field": "identity.type",
+            "notContains": "UserAssigned"
+          }
+        ]
+        },
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": {
+        "roleDefinitionIds": [
+                "/providers/microsoft.authorization/roleDefinitions/9b7fa17d-e63e-47b0-bb0a-15c516ac86ec"
+        ],
+        "deployment": {
+        "properties": {
+            "mode": "incremental",
+            "template": {
+                "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+                "contentVersion": "1.0.0.1",
+                "parameters": {
+                  "location":{
+                      "type": "string"
+                    },
+                    "userManagedId": {
+                      "type": "String"
+                    }
+                },
+              "resources": [
+                {
+                  "type": "Microsoft.Sql/servers/identity",
+                  "apiVersion": "2020-06-01",
+                  "properties": {
+                    "type": "UserAssigned",
+                    "userAssignedIdentities": "[parameters('userManagedId')]"
+                  }
+                }
+                ]
+            },
+                "parameters": {
+                        "location": {
+                            "value": "[field('location')]"
+                          },
+                          "userManagedId": {
+                            "Value": "[parameters('userManagedId')]"
+                          }
+                    },
+                }
+              }
+             }
+            }
+          },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        },
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "defaultValue": "DeployIfNotExists"
+      },
+      "sqllocation":{
+        "type": "array",
+        "Metadata":{
+          "strongtype": "location",
+          "displayName": "Location"
+        },
+        "allowedValues": [
+          "Australia East",
+          "Australia Southeast",
+          "UK South",
+          "UK West"
+        ],
+        "defaultValue": ["Australia East"]
+      },
+      "userManagedId": {
+        "type": "String",
+        "metadata": {
+          "displayName": "User Managed Identity",
+          "description": "Select the User Managed Identity to apply to SQL Servers.",
+          "strongType": "Microsoft.ManagedIdentity/userAssignedIdentities",
+          "assignPermissions": true
+        }
+      }
+    }
+}

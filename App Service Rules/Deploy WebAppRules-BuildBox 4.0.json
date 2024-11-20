@@ -1,0 +1,94 @@
+{
+  "mode": "All",
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.Web/sites"
+        },
+        {
+          "field": "kind",
+          "like": "*"
+        }
+      ]
+    },
+    "then": {
+      "effect": "[parameters('effect')]",
+      "details": {
+        "type": "Microsoft.Web/sites/config",
+        "name": "web",
+        "existenceCondition": {
+          "field": "Microsoft.Web/sites/config/web.ipSecurityRestrictions[*].name",
+          "equals": "BuildBox"
+      },
+      "roleDefinitionIds": [
+        "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+      ],
+      "deployment": {
+        "properties": {
+          "mode": "incremental",
+          "template": {
+            "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+            "contentVersion": "1.0.0.0"
+            },
+            "resources": [
+              {
+                "type": "Microsoft.Resources/deployments",
+                "apiVersion": "2019-10-01",
+                "properties": {
+                  "mode": "incremental",
+                  "parameters": {},
+                  "template": {
+                    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {                
+                      "serverName": {
+                      "value": "[field('name')]"
+                      }
+                  },
+                    "resources": [
+                      {
+                        "type": "Microsoft.Web/sites/config",
+                        "apiVersion": "2019-11-01",
+                        "name": "[concat(parameters('servername'), '/web')]",
+                        "dependsOn": [
+                            "[resourceId('Microsoft.Web/sites', parameters('servername'))]"
+                        ],
+                        "properties" :{
+                        "ipSecurityRestrictions": [
+                          {
+                              "ipAddress": "202.160.96.41/32",
+                              "action": "Allow",
+                              "priority": 1,
+                              "name": "BuildBox",
+                              "description": "BuildBox"
+                          }
+                      ]
+                    }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+          }
+        }
+      }
+    },
+  "parameters": {
+    "effect": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Effect",
+        "description": "Enable or disable the execution of the policy"
+      },
+      "allowedValues": [
+        "DeployIfNotExists",
+        "Disabled"
+      ],
+      "defaultValue": "DeployIfNotExists"
+    }
+  }
+}

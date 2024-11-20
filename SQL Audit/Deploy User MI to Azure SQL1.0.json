@@ -1,0 +1,73 @@
+{
+    "mode": "Indexed",
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Sql/servers"
+          },
+          {
+            "field": "location",
+            "in": "[parameters('sqllocation')]"
+          },
+          {
+            "field": "identity.type",
+            "notContains": "UserAssigned"
+          }
+        ]
+        },
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": {
+        "roleDefinitionIds": [
+                "/providers/microsoft.authorization/roleDefinitions/9b7fa17d-e63e-47b0-bb0a-15c516ac86ec"
+        ],
+        "operations": [
+        {
+            "operation": "add",
+            "field": "identity.type",
+            "value": "[parameters('userManagedId')]"
+        }
+       ]
+     }
+    }
+   },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        },
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "defaultValue": "DeployIfNotExists"
+      },
+      "sqllocation":{
+        "type": "array",
+        "Metadata":{
+          "strongtype": "location",
+          "displayName": "Location"
+        },
+        "allowedValues": [
+          "Australia East",
+          "Australia Southeast",
+          "UK South",
+          "UK West"
+        ],
+        "defaultValue": ["Australia East"]
+      },
+      "userManagedId": {
+        "type": "String",
+        "metadata": {
+          "displayName": "User Managed Identity",
+          "description": "Select the User Managed Identity to apply to SQL Servers.",
+          "strongType": "Microsoft.ManagedIdentity/userAssignedIdentities",
+          "assignPermissions": true
+        }
+      }
+    }
+}
