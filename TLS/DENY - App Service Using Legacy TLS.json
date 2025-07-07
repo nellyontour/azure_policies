@@ -1,0 +1,33 @@
+{
+  "mode": "All",
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.Web/sites"
+        },
+        {
+          "field": "kind",
+          "notContains": "functionapp"
+        },
+        {
+          "anyOf": [
+            {
+              "field": "Microsoft.Web/sites/config/minTlsVersion",
+              "NotEquals": "TLS1_3"
+            },
+            {
+              "field": "Microsoft.Web/sites/config/minTlsVersion",
+              "exists": "false"
+            }
+          ]
+        }
+      ]
+    },
+    "then": {
+      "effect": "deny"
+    }
+  },
+  "parameters": {}
+}
